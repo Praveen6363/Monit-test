@@ -1,0 +1,22 @@
+  GNU nano 7.2                                    /etc/monit/conf.d/apache                                             
+check program script with path "/home/praveen-63/Desktop/example.sh"
+every 1 cycles
+if status !=0
+then alert
+
+check file log_file with path "/home/praveen-63/system_info.log"
+every 1 cycles
+if size > 2 MB
+then exec "/usr/bin/bash -c 'monit unmonitor script'"
+else
+exec "/usr/bin/bash -c 'monit monitor script'"
+
+check file log_file_mail_alert with path "/home/praveen-63/system_info.log"
+every 1 cycles
+if size > 2 MB
+then alert
+
+check file log_file_append with path "/home/praveen-63/system_info.log"
+if size > 2 MB
+then exec "/usr/bin/bash -c '/home/praveen-63/example2.sh
+
